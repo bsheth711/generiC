@@ -6,7 +6,14 @@
 #ifndef mem
 #define mem
 
-#define safe_malloc(ptr, size) malloc(size); \
+#define safe_malloc(ptr, size) \
+	ptr = malloc(size); \
+	if (ptr == NULL) { \
+		exit(1); \
+	}
+
+#define safe_realloc(ptr, size) \
+	ptr = realloc(ptr, size); \
 	if (ptr == NULL) { \
 		exit(1); \
 	}

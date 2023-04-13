@@ -16,7 +16,12 @@
 // defines append 'function' for lists
 #define append(ls, val) \
 	ls->arr[ls->size] = val; \
-	ls->size++;
+	ls->size++; \
+	\
+	if (ls->size == ls->capacity) { \
+		safe_realloc(ls->arr, sizeof(ls->arr[0]) * ls->size * 2); \
+		ls->capacity++; \
+	}
 
 // defines structure and type of declared list types
 #define declare_list(name, type) \
@@ -28,11 +33,12 @@
 	} name; \
 	\
 	name* new(name) { \
-		name* ret = safe_malloc(ret, sizeof(name)); \
-		ret->arr = safe_malloc(ret->arr, sizeof(type) * 8); \
+		name* ret; \
+		safe_malloc(ret, sizeof(name)); \
+		safe_malloc(ret->arr, sizeof(type) * 8); \
 		ret->capacity = 8; \
 		ret->size = 0; \
 		return ret; \
-	} \
+	} 
 
 #endif
