@@ -15,8 +15,8 @@
 #define new(name) new_##name()
 
 /*
-   defines append 'function' for lists
-   @param ls The list to be appended to
+   defines append call for lists
+   @param ls Pointer to the list to be appended to
    @param val The value to be appended
 */
 #define append(ls, val) do { \
@@ -30,8 +30,8 @@
 } while(0)
 
 /* 
-   defines get function for lists
-   @param ls The list to be queried
+   defines get call for lists
+   @param ls Pointer to the list to be queried
    @param idx The index to be retrieved
    @returns the 
 */
@@ -39,7 +39,7 @@
 
 /* 
    defines remove call for lists
-   @param ls The list from which an element will be removed
+   @param ls Pointer to the list from which an element will be removed
    @param idx The index of the element to remove
 */
 #define remove(ls, idx) do { \
@@ -57,14 +57,14 @@
 
 /* 
    defines size call for lists
-   @param ls The list to be queried
+   @param ls Pointer to the list to be queried
    @returns The the number of elements in the list
 */ 
 #define size(ls) ls->size
 
 /* 
    defines insert call for lists
-   @param ls The list that will be inserted into
+   @param ls Pointer to the list that will be inserted into
    @param idx The index to insert the new value into
    @param val The new value to insert
 
@@ -84,6 +84,12 @@
    defines struct and constructor for a new list type
    @param name The name for the new list type
    @param type The data type for the list
+   declare_list(name, type)
+
+
+   @param type The type of the new list, should have been declared
+   @returns a pointer to the new list
+   new(type)
 */
 #define declare_list(name, type) \
 	\
